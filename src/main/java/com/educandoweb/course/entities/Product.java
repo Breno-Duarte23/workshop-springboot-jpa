@@ -1,12 +1,13 @@
-/*
 package com.educandoweb.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_product")
@@ -23,26 +24,17 @@ public class Product implements Serializable {
 
     @JsonIgnore
     @ManyToMany
-    private List<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Double price, String imgUrl) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
+    public Product(String imgUrl, String name, String description,  Double price, Long id) {
         this.imgUrl = imgUrl;
-    }
-
-    public Product(Long id, String name, String description, Double price, String imgUrl, List<Category> categories) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
         this.price = price;
-        this.imgUrl = imgUrl;
-        this.categories = categories;
+        this.description = description;
+        this.name = name;
+        this.id = id;
     }
 
     public Long getId() {
@@ -85,7 +77,7 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public List<Category> getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
@@ -101,4 +93,3 @@ public class Product implements Serializable {
         return Objects.hashCode(getId());
     }
 }
-*/
